@@ -22,7 +22,10 @@ async function checkElasticsearchIndices() {
         health: index_info.health, // (red, yellow, green)
         status: index_info.status, // open, closed, etc
         shards: index_info.pri,    // primary shard count
-        replicas: index_info.rep   // number of replicas per primary shard
+        replicas: index_info.rep,   // number of replicas per primary shard
+
+        // custom info passed in via environment vars
+        environment: process.env.ENVIRONMENT
       };
 
       console.log(JSON.stringify(log_json));
