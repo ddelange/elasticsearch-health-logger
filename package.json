@@ -1,0 +1,14 @@
+{
+  "name": "pelias-elasticsearch-health-logger",
+  "version": "1.0.0",
+  "description": "poll an Elasticsearch cluster and log the health (GREEN, YELLOW, or RED) of each index in the cluster",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "elasticsearch": "^13.3.1"
+  }
+}
