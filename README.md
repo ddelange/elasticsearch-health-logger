@@ -1,4 +1,4 @@
-# Elasticsearch Status Watcher
+# Elasticsearch Health Logger
 
 This is a small Node.js script to poll an Elasticsearch cluster and log the health (GREEN, YELLOW, or RED) of each index in the cluster.
 
