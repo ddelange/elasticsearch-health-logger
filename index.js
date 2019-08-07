@@ -37,4 +37,7 @@ async function checkElasticsearchIndices() {
   }
 }
 
+// run once right at startup for easy debugging
+checkElasticsearchIndices();
+
 setInterval(checkElasticsearchIndices, watch_interval * 1000);
