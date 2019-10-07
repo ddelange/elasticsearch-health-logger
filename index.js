@@ -4,12 +4,27 @@ const watch_interval = process.env.WATCH_INTERVAL || 60;
 
 const elasticsearch_host = process.env.ELASTICSEARCH_HOST;
 
+const log_green = get_log_green();
+
 if (!elasticsearch_host) {
   console.error("no ELASTICSEARCH_HOST set");
   process.exit(1);
 }
 
 const elasticsearch_client = new elasticsearch.Client({ host: elasticsearch_host });
+
+function get_log_green() {
+  if (process.env.LOG_GREEN == 'false') {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+// determine if log should be emitted based on its contents
+function should_log(log_json) {
+  return log_green || log_json.health !== 'green';
+}
 
 async function checkElasticsearchIndices() {
   try {
@@ -28,7 +43,9 @@ async function checkElasticsearchIndices() {
         environment: process.env.ENVIRONMENT
       };
 
-      console.log(JSON.stringify(log_json));
+      if (should_log(log_json)) {
+        console.log(JSON.stringify(log_json));
+      }
     });
   } catch(error) {
     // treat all errors as fatal. Rely on container management to restart this after errors

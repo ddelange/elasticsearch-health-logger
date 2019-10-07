@@ -17,3 +17,5 @@ The only configuration for this package is via environment variables. The follow
 `WATCH_INTERVAL`: The number of seconds between checks of the Elasticsearch cluster. Default is 60 seconds
 
 `ENVIRONMENT`: If supplied, the value of this environment variable will be logged as the `environment` key. This is useful for differentiating between Elasticsearch clusters after aggregating logs.
+
+`LOG_GREEN`: If set to the string value `false`, only non-green Elasticsearch health statuses will be logged. This can be helpful to cut down on log noise. Any string value other than `false` will ensure the status is always logged.
